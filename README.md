@@ -1,104 +1,268 @@
-# LeetCode Problems — JSON Dataset
+# LeetCode Editor - AI Interviewer POC
 
-This repository provides a dataset of LeetCode problems in JSON format. Each problem is saved as a separate `.json` file within the `problems/` directory, and all problems are also combined in a single `merged_problems.json` file for easy access.
+A professional web-based code editor that replicates LeetCode's interface, built with React and Monaco Editor. This is a proof-of-concept for an AI Interviewer project, demonstrating how to integrate a code IDE into a web application.
 
-## Dataset Structure
+## 🎯 Project Purpose
 
-- `problems/`: Contains individual LeetCode problems as separate `.json` files. Each file is named with the problem's ID and a slug (e.g., `0001-two-sum.json`).
-- `merged_problems.json`: A single file containing all problems merged into a list.
+This POC was created as a **feasibility analysis** for building an AI Interviewer platform. It demonstrates:
+- Loading and displaying 2900+ LeetCode problems from JSON files
+- URL-based navigation between problems
+- Professional code editing experience with Monaco Editor
+- Multi-language code snippet support
 
-## Updated JSON Schema for Each Problem
+## ✨ Features
 
-Each problem JSON file contains the following fields:
+✅ **2900+ LeetCode Problems** - Complete problem bank loaded from JSON files  
+✅ **URL-based Navigation** - Direct access via `localhost:5173/<problem-id>`  
+✅ **Problem List Browser** - Dropdown showing first 100 problems with search capability  
+✅ **8 Programming Languages** - JavaScript, Python3, Java, C++, TypeScript, Go, Rust, C#  
+✅ **Monaco Editor** - Full VS Code editing experience in the browser  
+✅ **Dark Theme** - Professional LeetCode-style UI  
+✅ **Split Panel Layout** - Problem description (left) + Code editor (right)  
+✅ **Tabs Interface** - Switch between Description and Solution views  
+✅ **Responsive Design** - Adapts to different screen sizes  
+✅ **Auto Code Templates** - Language-specific starter code for each problem  
 
-- `title`: The name of the problem (e.g., "Container With Most Water").
-- `problem_id`: The internal problem ID (string).
-- `frontend_id`: The LeetCode frontend ID (string).
-- `difficulty`: The difficulty level (`Easy`, `Medium`, or `Hard`).
-- `problem_slug`: The URL-friendly name (e.g., `container-with-most-water`).
-- `topics`: Array of topic tags (e.g., `Array`, `Two Pointers`).
-- `description`: The full problem statement, usually in Markdown format.
-- `examples`: Array of example objects, each with:
-    - `example_num`: Example number
-    - `example_text`: Input/output and explanation
-    - `images`: Array of image URLs (if available)
-- `constraints`: Array of constraints or limits for the problem.
-- `follow_ups`: Array of follow-up questions (if any).
-- `hints`: Array of hints for solving the problem.
-- `code_snippets`: Object containing starter code for various languages (e.g., `python`, `cpp`, `java`, etc.)
-- `solutions`: HTML string containing editorial content for some problems.
+## 🚀 Quick Start
 
-## Example Problem JSON
+### Prerequisites
+- **Node.js** (v16 or higher) - [Download here](https://nodejs.org/)
+- **npm** (comes with Node.js)
 
-```json
-{
-  "title": "Container With Most Water",
-  "problem_id": "11",
-  "frontend_id": "11",
-  "difficulty": "Medium",
-  "problem_slug": "container-with-most-water",
-  "topics": [
-      "Array",
-      "Two Pointers",
-      "Greedy"
-  ],
-  "description": "You are given an integer array height of length n...",
-  "examples": [
-    {
-      "example_num": 1,
-      "example_text": "Input: height = [1,8,6,2,5,4,8,3,7]\\nOutput: 49\\nExplanation: ...",
-      "images": ["https://s3-lc-upload.s3.amazonaws.com/uploads/2018/07/17/question_11.jpg"]
-    },
-    {
-      "example_num": 2,
-      "example_text": "Input: height = [1,1]\\nOutput: 1",
-      "images": ["https://s3-lc-upload.s3.amazonaws.com/uploads/2018/07/17/question_11.jpg"]
-    }
-  ],
-  "constraints": [
-    "n == height.length",
-    "2 <= n <= 105",
-    "0 <= height[i] <= 104"
-  ],
-  "follow_ups": [],
-  "hints": [
-    "If you simulate the problem, it will be O(n^2) which is not efficient.",
-    "Try to use two-pointers...",
-    "How can you calculate the amount of water at each step?"
-  ],
-  "code_snippets": {
-    "cpp": "class Solution {\npublic:\n    int maxArea(vector<int>& height) {\n        \n    }\n};",
-    "java": "class Solution {\n    public int maxArea(int[] height) {\n        \n    }\n}",
-    "python": "class Solution(object):\n    def maxArea(self, height):\n        \"\"\"\n        :type height: List[int]\n        :rtype: int\n        \"\"\"\n        ",
-    "python3": "class Solution:\n    def maxArea(self, height: List[int]) -> int:\n        ",
-    "c": "int maxArea(int* height, int heightSize) {\n    \n}",
-    "csharp": "public class Solution {\n    public int MaxArea(int[] height) {\n        \n    }\n}",
-    "javascript": "/**\n * @param {number[]} height\n * @return {number}\n */\nvar maxArea = function(height) {\n    \n};",
-    "typescript": "function maxArea(height: number[]): number {\n    \n};",
-    "php": "class Solution {\n\n    /**\n     * @param Integer[] $height\n     * @return Integer\n     */\n    function maxArea($height) {\n        \n    }\n}",
-    "swift": "class Solution {\n    func maxArea(_ height: [Int]) -> Int {\n        \n    }\n}",
-    "kotlin": "class Solution {\n    fun maxArea(height: IntArray): Int {\n        \n    }\n}",
-    "dart": "class Solution {\n  int maxArea(List<int> height) {\n    \n  }\n}",
-    "golang": "func maxArea(height []int) int {\n    \n}",
-    "ruby": "# @param {Integer[]} height\n# @return {Integer}\ndef max_area(height)\n    \nend",
-    "scala": "object Solution {\n    def maxArea(height: Array[Int]): Int = {\n        \n    }\n}",
-    "rust": "impl Solution {\n    pub fn max_area(height: Vec<i32>) -> i32 {\n        \n    }\n}",
-    "racket": "(define/contract (max-area height)\n  (-> (listof exact-integer?) exact-integer?)\n  )",
-    "erlang": "-spec max_area(Height :: [integer()]) -> integer().\nmax_area(Height) ->\n  .",
-    "elixir": "defmodule Solution do\n  @spec max_area(height :: [integer]) :: integer\n  def max_area(height) do\n    \n  end\nend"
-  }
-}
+### Installation
+
+1. **Navigate to the project directory:**
+   ```bash
+   cd leetcode-editor
+   ```
+
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+
+3. **Start the development server:**
+   ```bash
+   npm run dev
+   ```
+   
+   **Or use the convenient batch file (Windows):**
+   ```bash
+   start.bat
+   ```
+
+4. **Open your browser:**
+   ```
+   http://localhost:5173
+   ```
+
+The app will automatically redirect to Problem #1 (Two Sum).
+
+## 📖 Usage Guide
+
+### Navigating Problems
+
+| Action | URL | Description |
+|--------|-----|-------------|
+| Home | `http://localhost:5173/` | Redirects to Problem #1 |
+| Specific Problem | `http://localhost:5173/2` | Load Problem #2 (Add Two Numbers) |
+| Any Problem | `http://localhost:5173/<id>` | Replace `<id>` with any problem number (1-3640+) |
+
+**Examples:**
+- Problem #1: `http://localhost:5173/1` - Two Sum (Easy)
+- Problem #2: `http://localhost:5173/2` - Add Two Numbers (Medium)  
+- Problem #4: `http://localhost:5173/4` - Median of Two Sorted Arrays (Hard)
+
+### Using the Problem List
+
+1. Click the **"Problem List"** button in the header
+2. Browse through the first 100 problems
+3. See difficulty level (color-coded: 🟢 Easy, 🟡 Medium, 🔴 Hard)
+4. Click any problem to navigate instantly
+5. URL updates automatically
+
+### Editor Features
+
+| Feature | Description |
+|---------|-------------|
+| **Language Selector** | Dropdown in top-right to switch between 8 languages |
+| **Reset Button** | Restore original code template for selected language |
+| **Run Button** | UI ready (implementation pending) |
+| **Submit Button** | UI ready (implementation pending) |
+| **Syntax Highlighting** | Full Monaco Editor features |
+| **Auto-complete** | IntelliSense support for all languages |
+
+## 📁 Project Structure
+
+```
+leetcode-editor/
+├── public/                       # Static assets
+├── src/
+│   ├── components/
+│   │   ├── ProblemView.jsx      # Main problem view with editor
+│   │   └── ProblemView.css      # Component-specific styles
+│   ├── utils/
+│   │   └── problemsData.js      # Problem loading & caching logic
+│   ├── App.jsx                  # Router setup & problem list loading
+│   ├── App.css                  # App-level styles
+│   ├── main.jsx                 # React entry point
+│   └── index.css                # Global styles
+├── index.html                   # HTML template
+├── package.json                 # Dependencies & scripts
+├── vite.config.js              # Vite configuration
+├── start.bat                   # Windows quick-start script
+└── README.md                   # This file
+
+../problems/                     # 2900+ LeetCode problems (JSON)
+├── 0001-two-sum.json
+├── 0002-add-two-numbers.json
+├── 0003-longest-substring...json
+└── ...
 ```
 
+## 🔧 Key Components
+
+### `App.jsx`
+- Initializes React Router
+- Loads all 2900+ problems on startup using eager imports
+- Builds problem list cache for instant access
+- Handles routing: `/` → `/1` and `/:problemId` → `<ProblemView>`
+
+### `ProblemView.jsx`
+Main component that renders:
+- **Header**: Logo, Problem List button, Premium button
+- **Problem List Dropdown**: Scrollable list of first 100 problems
+- **Left Panel**: 
+  - Tabs (Description / Solution)
+  - Problem title, difficulty, topics
+  - Examples with expected output
+  - Constraints
+- **Right Panel**:
+  - Language selector dropdown
+  - Monaco Editor with full syntax highlighting
+  - Action buttons (Reset, Run, Submit)
+
+### `problemsData.js`
+- Uses Vite's `import.meta.glob()` to eagerly load all problem JSONs
+- Builds an in-memory cache mapping problem IDs to data
+- Provides `getProblem(id)` and `getAllProblems()` functions
+- Ensures instant problem switching without network requests
+
+## 🛠️ Technologies Used
+
+| Technology | Purpose | Version |
+|------------|---------|---------|
+| **React** | UI Framework | 18.2.0 |
+| **React Router DOM** | Client-side routing | 6.30.3 |
+| **Monaco Editor** | Code editor (VS Code engine) | 4.6.0 |
+| **Vite** | Build tool & dev server | 5.0.8 |
+| **CSS3** | Styling (no frameworks) | - |
+
+## 🎨 Features Showcase
+
+### 1. Problem Navigation
+- Direct URL access: Just type `/42` to jump to problem 42
+- Back/Forward browser buttons work seamlessly
+- Shareable problem links
+
+### 2. Multi-Language Support
+Switch between languages and see:
+- Language-specific code templates
+- Proper syntax highlighting
+- Appropriate Monaco language mode (JavaScript, Python, Java, etc.)
+
+### 3. Professional UI
+- Dark theme matching LeetCode
+- Color-coded difficulty badges
+- Topic tags for each problem
+- Clean, organized layout
+- Smooth animations and transitions
+
+### 4. Problem Data
+Each problem includes:
+- Full description
+- Multiple examples with explanations
+- Constraints
+- Solution article (when available)
+- Code templates for 8+ languages
+
+## 🚧 Possible Enhancements for AI Interviewer
+
+- [ ] **Code Execution** - Integrate Judge0 or similar API to run/test code
+- [ ] **Copy/Paste Restrictions** - Prevent cheating during interviews
+  - Disable Ctrl+V in Monaco Editor
+  - Log paste attempts for integrity monitoring
+- [ ] **Test Case Validation** - Run user code against hidden test cases
+- [ ] **Code Submission Tracking** - Store user solutions with timestamps
+- [ ] **Local Storage** - Auto-save code progress
+- [ ] **Search & Filter** - Find problems by title, difficulty, or topic
+- [ ] **Timer** - Track time spent on each problem
+- [ ] **AI Hints** - Provide contextual hints based on user's code
+- [ ] **Video Recording** - Record coding sessions for review
+- [ ] **Webcam Monitoring** - Proctoring features
+- [ ] **Analytics Dashboard** - Track user performance metrics
+
+## 📝 Notes
+
+- Problem data is loaded **eagerly** on app startup for instant access
+- All 2900+ problems are cached in memory
+- No backend required - fully client-side application
+- Problems are loaded from `../problems/*.json` relative to the editor
+- Monaco Editor provides the same experience as VS Code
+
+## 🐛 Known Limitations
+
+- Problem list dropdown shows only first 100 problems (performance)
+- No search functionality yet
+- Run/Submit buttons are UI-only (not functional)
+- Solutions may contain HTML formatting that needs proper rendering
+
+- [ ] Add code execution functionality
+- [ ] Add test case validation
+- [ ] Save code locally (localStorage)
+- [ ] Add search in problem list
+- [ ] Add problem filtering by difficulty/topic
+- [ ] Add solution submission tracking
+
 ## Notes
-- Some fields (like `solutions`, `images`, `follow_ups`) may be missing for certain problems.
 
-## Usage
+- All problem data is loaded from JSON files in the `problems/` folder
+- Problems are loaded dynamically based on the URL parameter
+- The editor automatically loads the appropriate code template for each language
 
-You can use this dataset for:
-- Building practice tools
-- Analyzing problem trends
-- Interview preparation
-- Educational projects
+## 📜 Available Scripts
 
-Feel free to contribute or suggest improvements!
+```bash
+# Start development server (with hot reload)
+npm run dev
+
+# Build for production
+npm run build
+
+# Preview production build
+npm run preview
+```
+
+**Windows users:** Simply run `start.bat` to automatically install dependencies and start the server!
+
+## 🔗 Related Files
+
+- **Full Setup Guide**: See `SETUP_COMPLETE.md` for detailed setup instructions
+- **Problems Data**: Located in `../problems/` directory (2900+ JSON files)
+- **Git Ignore**: Configured in `.gitignore` to exclude `node_modules`
+
+## 📄 License
+
+This project is a proof-of-concept for educational purposes. LeetCode problems and data belong to LeetCode LLC.
+
+## 🤝 Contributing
+
+This is a POC project. Feel free to fork and adapt for your AI Interviewer platform!
+
+## 📧 Contact
+
+For questions about this POC or the AI Interviewer project, please reach out.
+
+---
+
+**Built with ❤️ for AI Interviewer Feasibility Analysis**
