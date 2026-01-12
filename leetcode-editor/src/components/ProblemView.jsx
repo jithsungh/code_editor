@@ -4,6 +4,41 @@ import Editor from '@monaco-editor/react'
 import { getProblem } from '../utils/problemsData'
 import './ProblemView.css'
 
+// Format solution text with proper HTML
+function formatSolution(solutionText) {
+  if (!solutionText) return '<p>Solution not available</p>'
+  
+  // Replace escaped newlines with actual newlines
+  let formatted = solutionText
+    // Convert headers (### becomes <h3>)
+    .replace(/###\s+(.+?)(?=\n|$)/g, '<h3>$1</h3>')
+    .replace(/##\s+(.+?)(?=\n|$)/g, '<h2>$1</h2>')
+    // Convert bold text (**text** becomes <strong>)
+    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    // Convert italic text (*text* becomes <em>)
+    .replace(/\*(.+?)\*/g, '<em>$1</em>')
+    // Convert inline code ($$...$$) 
+    .replace(/\$\$(.+?)\$\$/g, '<code>$1</code>')
+    // Convert horizontal rules (---)
+    .replace(/\n---\n/g, '<hr />')
+    // Convert bullet points (* item)
+    .replace(/\n\* (.+?)(?=\n)/g, '\n<li>$1</li>')
+    // Convert double newlines to paragraphs
+    .replace(/\n\n/g, '</p><p>')
+    // Convert single newlines to line breaks
+    .replace(/\n/g, '<br />')
+  
+  // Wrap lists
+  formatted = formatted.replace(/(<li>.*?<\/li>)/gs, '<ul>$1</ul>')
+  
+  // Wrap in paragraph tags if not already wrapped
+  if (!formatted.startsWith('<h') && !formatted.startsWith('<p>')) {
+    formatted = '<p>' + formatted + '</p>'
+  }
+  
+  return formatted
+}
+
 function ProblemView({ problemsList }) {
   const { problemId } = useParams()
   const navigate = useNavigate()
@@ -229,11 +264,10 @@ function ProblemView({ problemsList }) {
                     ))}
                   </ul>
                 </div>
-              </>
-            ) : (
+              </>            ) : (
               <div className="solution-content">
                 <h3>Solution</h3>
-                <div dangerouslySetInnerHTML={{ __html: problemData.solution || '<p>Solution not available</p>' }} />
+                <div dangerouslySetInnerHTML={{ __html: formatSolution(problemData.solution) }} />
               </div>
             )}
           </div>

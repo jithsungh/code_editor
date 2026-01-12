@@ -1,1 +1,7 @@
 leetcode-editor/node_modules
+# Ignore all problem JSON files
+problems/*.json
+
+# Allow only first 10 problems
+!problems/000*.json
+!problems/0010-*.json
